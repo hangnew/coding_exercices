@@ -10,10 +10,12 @@ class Main {
 		Scanner sc = new Scanner(System.in);
 		final int N = sc.nextInt();
 		int sum = 0;
-		for (int i = 1; i <= N; i++) {
+		for (int i = 1; i < N; i++) {
 			String temp = String.valueOf(i);
-			if (temp.contains("3") || temp.contains("6") || temp.contains("9")) {
-				sum++;
+			for (int j = 0; j < temp.length(); j++) {
+				if (temp.charAt(j) == '3' || temp.charAt(j) == '6' || temp.charAt(j) == '9') {
+					sum++;
+				}
 			}
 		}
 		System.out.println(sum);
