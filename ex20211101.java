@@ -8,46 +8,37 @@
 지민이가 100 이상의 용량을 가진 램 중 파손된 램의 개수와 번호를 찾을 수 있도록 도와주세요! 
 */
 
+
 import java.util.*;
 
 class Main {
 	
-	public static int[] ifDamaged(int[] rams){
-		int count = 0;
-		for (int i = 0; i < rams.length; i++) {
-			int n = rams[i];
-			// 2로 나뉠때까지 나눠보기
-			while(n % 2 == 0) {
- 				n = n / 2;
-			}
-			// 몫이 1이면 2제곱임. 아무튼 그렇다고 함
-			if(n != 1) {
-				count++;
-				// 망가진거 0으로 바꾸기
-				rams[i] = 0;
-  		}
+	public static boolean ifDamaged(int n){
+		// 2로 나뉠때까지 나눠보기
+		while(n % 2 == 0) {
+ 			n = n / 2;
 		}
-		System.out.println(count);
-		return rams;
-	}
-	
-	public static void damaged(int[] rams) {
-		// 배열 중에 값이 0인것만 프린트
-		for (int i = 0; i < rams.length; i++) {
-			if (rams[i] == 0) {
-				System.out.print((i + 1) + " ");
-			}
+		// 몫이 1이면 2제곱임. 아무튼 그렇다고 함
+		if(n != 1) {
+			return true;
 		}
+		return false;
 	}
 	
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		int r = sc.nextInt();
-		int[] rams = new int[r];
+		int count = 0;
+		String damaged = "";
 		for (int i = 0; i < r; i++) {
-			rams[i] = sc.nextInt();
+			int n = sc.nextInt();
+			if (ifDamaged(n)) {
+				count++;
+				damaged += i + 1 + " ";
+			}
 		}
-		damaged(ifDamaged(rams));
+		System.out.println(count);
+		System.out.println(damaged);
 		sc.close();
 	}
 }
