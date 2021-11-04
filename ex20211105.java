@@ -8,19 +8,19 @@
 import java.util.*;
 
 class Main {
-	public static int bus(int t, Map<Integer, int[]> map) {
+	public static int bus(int t, int[][] sd) {
 		int key = 1;
 		int term = 0;
-		for (int i = 1; i < map.size() + 1; i++) {
-			int busTime = map.get(i)[0];
-			while (busTime + map.get(i)[1] <= t) {
-				busTime += map.get(i)[1];
+		for (int i = 0; i < sd.length; i++) {
+			int busTime = sd[i][0];
+			while (busTime + sd[i][1] <= t) {
+				busTime += sd[i][1];
 			}
 			int tempTerm = (busTime > t) ? busTime - t : t - busTime;
-			term = (i == 1) ? tempTerm : term;
+			term = (i == 0) ? tempTerm : term;
 			if (tempTerm < term) {
 				term = tempTerm;
-				key = i;
+				key = i + 1;
 			}
 		}
 		return key;
@@ -30,14 +30,12 @@ class Main {
 		Scanner sc = new Scanner(System.in);
 		final int N = sc.nextInt();
 		final int T = sc.nextInt();
-		Map<Integer, int[]> sMap = new HashMap<>();
+		int[][] sd = new int[N][2];
 		for (int i = 0; i < N; i++) {
-			int[] s = new int[2];
-			s[0] = sc.nextInt();
-			s[1] = sc.nextInt();
-			sMap.put((i + 1), s);
+			sd[i][0] = sc.nextInt();
+			sd[i][1] = sc.nextInt();
 		}
 		sc.close();
-		System.out.println(bus(T, sMap));
+		System.out.println(bus(T, sd));
 	}
 }
