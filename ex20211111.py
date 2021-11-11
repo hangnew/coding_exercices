@@ -31,7 +31,7 @@ def shortcut(n, x, p):
 	print(result)
 	
   
-[num_shops, my_location] = list(map(lambda x: int(x), input().split()))
-shops_loc = list(map(lambda x: int(x), input().split()))
-shops_loc.sort()
+[num_shops, my_location] = list(map(lambda x: int(x), input().split())) # [매점개수, 집 위치]
+shops_loc = list(map(lambda x: int(x), input().split())) # 매점의 위치
+shops_loc.sort() # 오름차순 정렬
 shortcut(num_shops, my_location, shops_loc)
