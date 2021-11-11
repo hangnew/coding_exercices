@@ -12,15 +12,14 @@ class Main {
 		int items = (n - 2 > 0) ? n - 2 : 0; // 사야할 물건 개수 (한 블럭당 매점 개수) 
 		int loop = (n > 2) ? 3 : 0; // 반복할 횟수 
 		
-		// result = 첫 번째 블럭 최단거리 미리 구하기
-		// 사야할 물건이 0인 경우 0
+		// 첫 번째 블럭 (길이 : items) 최단 거리 (사야할 물건이 0일 경우 0)
 		int result = 0;
-		if (items > 0) {
-			int distance1 = Math.abs(p[items - 1] - p[0]);
-			int fromFirst1 = Math.abs(p[0] - x);
-			int fromLast1 = Math.abs(p[items - 1] - x);
-			int startPoint1 = (fromFirst1 < fromLast1) ? fromFirst1 : fromLast1;
-			result = distance1 + startPoint1;
+		if (items > 0) { // 사야할 물건이 1개 이상인 경우
+			int distance1 = Math.abs(p[items - 1] - p[0]); // 블럭의 마지막 매점에서 첫 번째 매점까지 거리
+			int fromFirst1 = Math.abs(p[0] - x); // 집에서 첫 번째 매점까지의 거리
+			int fromLast1 = Math.abs(p[items - 1] - x); // 집에서 마지막 매점까지의 거리
+			int startPoint1 = (fromFirst1 < fromLast1) ? fromFirst1 : fromLast1; // 더 짧은 거리의 매점부터 출발
+			result = distance1 + startPoint1; // 총 거리 = 매점끼리의 총 거리 + 집에서 시작 매점까지의 거리
 		}
 		
 		// 두 번째 블럭부터 거리가 result보다 짧은지 비교
